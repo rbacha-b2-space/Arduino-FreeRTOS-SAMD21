@@ -214,8 +214,7 @@ extern "C" {
   #if defined (SEGGER_SYSVIEW_CORE) && (SEGGER_SYSVIEW_CORE == SEGGER_SYSVIEW_CORE_CM3)
     #define SEGGER_SYSVIEW_GET_TIMESTAMP()        (*(U32 *)(0xE0001004))                  // Retrieve a system timestamp. Cortex-M cycle counter.
   #else
-    //#define SEGGER_SYSVIEW_GET_TIMESTAMP()        ulMainGetRunTimeCounterValue()         // Retrieve a system timestamp via user-defined function
-    #define SEGGER_SYSVIEW_GET_TIMESTAMP()        (*(U32 *)(0xE0001004))                  // Retrieve a system timestamp. Cortex-M cycle counter.
+    #define SEGGER_SYSVIEW_GET_TIMESTAMP()        ulMainGetRunTimeCounterValue()         // Arduino micros(), in us
   #endif
 #endif
 

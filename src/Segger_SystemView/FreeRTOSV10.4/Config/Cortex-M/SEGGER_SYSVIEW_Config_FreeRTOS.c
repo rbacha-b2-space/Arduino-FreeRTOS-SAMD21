@@ -63,13 +63,17 @@ extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 **********************************************************************
 */
 // The application name to be displayed in SystemViewer
+#ifndef SYSVIEW_APP_NAME
 #define SYSVIEW_APP_NAME        "FreeRTOS Demo Application"
+#endif
 
 // The target device name
+#ifndef SYSVIEW_DEVICE_NAME
 #define SYSVIEW_DEVICE_NAME     "Cortex-M4"
+#endif
 
 // Frequency of the timestamp. Must match SEGGER_SYSVIEW_GET_TIMESTAMP in SEGGER_SYSVIEW_Conf.h
-#define SYSVIEW_TIMESTAMP_FREQ  (configCPU_CLOCK_HZ)
+#define SYSVIEW_TIMESTAMP_FREQ  (1000000)
 
 // System Frequency. SystemcoreClock is used in most CMSIS compatible projects.
 #define SYSVIEW_CPU_FREQ        configCPU_CLOCK_HZ
