@@ -4,6 +4,8 @@
 #define FREE_RTOS_SAMD21_H
 
 	#include <Arduino.h> //required to prevent a compiling error when a cpp header file tries to include this library
+	
+	#include "Segger_SystemView/SEGGER/SEGGER_SYSVIEW.h"
 
 	// Rtos core library
 	#include <FreeRTOS.h>
