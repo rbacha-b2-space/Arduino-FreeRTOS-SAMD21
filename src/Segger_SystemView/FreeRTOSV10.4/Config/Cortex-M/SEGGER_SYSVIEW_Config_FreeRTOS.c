@@ -80,7 +80,7 @@ extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 
 // The target device name
 #ifndef SYSVIEW_DEVICE_NAME
-#define SYSVIEW_DEVICE_NAME     "Cortex-M4"
+#define SYSVIEW_DEVICE_NAME     "Cortex-M0"
 #endif
 
 // Frequency of the timestamp. Must match SEGGER_SYSVIEW_GET_TIMESTAMP in SEGGER_SYSVIEW_Conf.h
