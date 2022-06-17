@@ -45,27 +45,60 @@
 *       SystemView version: 3.32                                    *
 *                                                                    *
 **********************************************************************
-----------------------------------------------------------------------
-Purpose     : Publics for the synchronous SysView recorder state machine
----------------------------END-OF-HEADER------------------------------
+-------------------------- END-OF-HEADER -----------------------------
+
+File    : SEGGER_SYSVIEW_Config_FreeRTOS.c
+Purpose : Sample setup configuration of SystemView with FreeRTOS.
+Revision: $Rev: 7745 $
 */
+#include "FreeRTOS.h"
+#include "../../../SEGGER/SEGGER_SYSVIEW.h"
 
-#ifndef SEGGER_SYSVIEW_REC_H
-# define SEGGER_SYSVIEW_REC_H
+extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 
-#include <SEGGER_SYSVIEW.h>
+/*********************************************************************
+*
+*       Defines, configurable
+*
+**********************************************************************
+*/
+// The application name to be displayed in SystemViewer
+#define SYSVIEW_APP_NAME        "FreeRTOS Demo Application"
 
-#if defined(__cplusplus)
-extern "C" {     /* Make sure we have C-declarations in C++ programs */
-#endif
+// The target device name
+#define SYSVIEW_DEVICE_NAME     "Cortex-M4"
 
-int SYSVIEW_REC_GetOutgoing     (U8* pBuf, unsigned BufSize);
-int SYSVIEW_REC_ProcessIncoming (const U8* pBytes, unsigned NumBytes);
+// Frequency of the timestamp. Must match SEGGER_SYSVIEW_GET_TIMESTAMP in SEGGER_SYSVIEW_Conf.h
+#define SYSVIEW_TIMESTAMP_FREQ  (configCPU_CLOCK_HZ)
 
-#if defined(__cplusplus)
+// System Frequency. SystemcoreClock is used in most CMSIS compatible projects.
+#define SYSVIEW_CPU_FREQ        configCPU_CLOCK_HZ
+
+// The lowest RAM address used for IDs (pointers)
+#define SYSVIEW_RAM_BASE        (0x10000000)
+
+/********************************************************************* 
+*
+*       _cbSendSystemDesc()
+*
+*  Function description
+*    Sends SystemView description strings.
+*/
+static void _cbSendSystemDesc(void) {
+  SEGGER_SYSVIEW_SendSysDesc("N="SYSVIEW_APP_NAME",D="SYSVIEW_DEVICE_NAME",O=FreeRTOS");
+  SEGGER_SYSVIEW_SendSysDesc("I#15=SysTick");
 }
-#endif
 
-#endif // SEGGER_SYSVIEW_REC_H
+/*********************************************************************
+*
+*       Global functions
+*
+**********************************************************************
+*/
+void SEGGER_SYSVIEW_Conf(void) {
+  SEGGER_SYSVIEW_Init(SYSVIEW_TIMESTAMP_FREQ, SYSVIEW_CPU_FREQ, 
+                      &SYSVIEW_X_OS_TraceAPI, _cbSendSystemDesc);
+  SEGGER_SYSVIEW_SetRAMBase(SYSVIEW_RAM_BASE);
+}
 
 /*************************** End of file ****************************/

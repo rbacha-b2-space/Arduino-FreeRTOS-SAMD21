@@ -59,7 +59,7 @@ Notes:
 #ifndef SYSVIEW_FREERTOS_H
 #define SYSVIEW_FREERTOS_H
 
-#include "SEGGER_SYSVIEW.h"
+#include "../SEGGER/SEGGER_SYSVIEW.h"
 
 /*********************************************************************
 *
