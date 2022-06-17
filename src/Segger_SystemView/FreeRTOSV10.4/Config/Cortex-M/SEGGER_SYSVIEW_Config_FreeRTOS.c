@@ -73,7 +73,7 @@ extern const SEGGER_SYSVIEW_OS_API SYSVIEW_X_OS_TraceAPI;
 #endif
 
 // Frequency of the timestamp. Must match SEGGER_SYSVIEW_GET_TIMESTAMP in SEGGER_SYSVIEW_Conf.h
-#define SYSVIEW_TIMESTAMP_FREQ  (1000000)
+#define SYSVIEW_TIMESTAMP_FREQ  (1000)
 
 // System Frequency. SystemcoreClock is used in most CMSIS compatible projects.
 #define SYSVIEW_CPU_FREQ        configCPU_CLOCK_HZ
@@ -103,6 +103,13 @@ void SEGGER_SYSVIEW_Conf(void) {
   SEGGER_SYSVIEW_Init(SYSVIEW_TIMESTAMP_FREQ, SYSVIEW_CPU_FREQ, 
                       &SYSVIEW_X_OS_TraceAPI, _cbSendSystemDesc);
   SEGGER_SYSVIEW_SetRAMBase(SYSVIEW_RAM_BASE);
+}
+
+
+U32 SEGGER_SYSVIEW_X_GetTimestamp(void){
+  extern volatile uint32_t _ulTickCount;
+  return _ulTickCount;
+    // ulMainGetRunTimeCounterValue()
 }
 
 /*************************** End of file ****************************/
