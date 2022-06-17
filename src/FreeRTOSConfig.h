@@ -174,7 +174,9 @@ command interpreter running. */
 #define configCOMMAND_INT_MAX_OUTPUT_SIZE 2048
 
 // SystemView include
+#ifdef ENABLE_SYSTEMVIEW
 #include "Segger_SystemView/FreeRTOSV10.4/SEGGER_SYSVIEW_FreeRTOS.h"
+#endif
 
 #endif /* FREERTOS_CONFIG_H */
 

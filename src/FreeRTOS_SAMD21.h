@@ -5,7 +5,9 @@
 
 	#include <Arduino.h> //required to prevent a compiling error when a cpp header file tries to include this library
 	
+	#ifdef ENABLE_SYSTEMVIEW
 	#include "Segger_SystemView/SEGGER/SEGGER_SYSVIEW.h"
+	#endif
 
 	// Rtos core library
 	#include <FreeRTOS.h>
