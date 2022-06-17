@@ -84,6 +84,7 @@ FreeRTOS/Source/tasks.c for limitations. */
 #define configUSE_MUTEXES        				1
 #define INCLUDE_uxTaskGetStackHighWaterMark 	1
 #define INCLUDE_xTaskGetIdleTaskHandle 			1
+#define INCLUDE_pxTaskGetStackStart                             1
 #define configUSE_MALLOC_FAILED_HOOK			1
 
 /* Co-routine definitions. */
@@ -171,6 +172,9 @@ and one on TCP/IP).  This is done to prevent an output buffer being defined by
 each implementation - which would waste RAM.  In this case, there is only one
 command interpreter running. */
 #define configCOMMAND_INT_MAX_OUTPUT_SIZE 2048
+
+// SystemView include
+#include "Segger_SystemView/FreeRTOSV10.4/SEGGER_SYSVIEW_FreeRTOS.h"
 
 #endif /* FREERTOS_CONFIG_H */
 
